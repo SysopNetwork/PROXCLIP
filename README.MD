@@ -95,7 +95,7 @@ PROXCLIP installs two hooks at startup.
 
 Connections that do not carry a PROXY header are passed through untouched with zero modification to the socket stream.
 
-For a complete technical breakdown, see [TECHNICAL.md](TECHNICAL.md).
+For a complete technical breakdown, see [TECHNICAL.MD](TECHNICAL.MD).
 
 ---
 
@@ -134,7 +134,7 @@ PROXCLIP    chan 04: bad PROXY header (fields=2), passing through
 
 | Document | Description |
 |----------|-------------|
-| [TECHNICAL.md](TECHNICAL.md) | Detailed technical reference — hook mechanism, execution flow, runtime symbol resolution, build configuration |
+| [TECHNICAL.MD](TECHNICAL.MD) | Detailed technical reference — hook mechanism, execution flow, runtime symbol resolution, build configuration |
 
 ---
 
