@@ -1,0 +1,13 @@
+obj/
+.vs/
+*.pdb
+*.exp
+*.lib
+*.suo
+*.vcxproj.user
+*.MSG
+# Exclude built binaries everywhere except the DIST folder
+*.dll
+*.DLL
+!DIST/*.dll
+!DIST/*.DLL

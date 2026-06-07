@@ -1,0 +1,6 @@
+; PROXCLIP_EXP.DEF
+LIBRARY PROXCLIP.DLL
+; PROXCLIP Proxy Client IP - Copyright (c) 2026 Sysop Network
+; *** Visual Studio EXPORT ALIASES ONLY ***
+EXPORTS
+    _init__proxclip=init__proxclip    @1
