@@ -49,13 +49,8 @@ By **[Mark Laudenbach](https://github.com/laudenbachm)** at **[Sysop Network](ht
 ## 🚀 Quick Install
 
 1. Copy `PROXCLIP.DLL` and `PROXCLIP.MDF` to your BBS installation directory. (Most of the time its C:\BBSV10)
-2. Add the following to `wgserv.cfg` **after** the GALTNTD block:
-   ```
-   DLL=PROXCLIP
-   APP=PROXCLIP Proxy Client IP by Sysop Network
-   ```
-3. Enable PROXY Protocol v1 on your proxy server.
-4. Restart the BBS.
+2. Enable PROXY Protocol v1 on your proxy server.
+3. Restart the BBS.
 
 ---
 
