@@ -100,7 +100,9 @@ PROXCLIP.DLL's own `recv()` calls (used inside `prx_consume_header`) go through 
 
 ### Load order requirement
 
-Because PROXCLIP reads `hdlcon` at init time, it must load **after** GALTNTD in `wgserv.cfg`. If `hdlcon` is NULL when `init__proxclip` runs, the module logs a fatal message and returns without hooking — existing connections continue to work, PROXCLIP is simply inactive.
+PROXCLIP reads `hdlcon` at init time, so it must initialise after GALTNTD. The MDF declares the module `INTERNAL` and `UNCONDITIONAL`, which causes MBBS to load it automatically with no `wgserv.cfg` entry required. MBBS loads internal modules after the standard telnet stack, satisfying the order dependency automatically.
+
+If `hdlcon` is NULL when `init__proxclip` runs (e.g. GALTNTD is not installed), the module logs a fatal message and returns without hooking — existing connections continue to work, PROXCLIP is simply inactive.
 
 ---
 
