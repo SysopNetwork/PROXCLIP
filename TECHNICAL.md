@@ -199,38 +199,36 @@ This instructs the linker to export the symbol under the name `_init__proxclip` 
 |------|---------|
 | `PROXCLIP.C` | Module source — hook logic, IP patching |
 | `PROXCLIP.H` | Header (minimal; reserved for future defines) |
-| `PROXCLIP.MDF` | Module Definition File — tells MBBS the module name and DLL |
+| `PROXCLIP.rc` | Version and copyright resource |
 | `PROXCLIP_EXP.DEF` | Linker export aliases for MSVC |
 | `PROXCLIP.vcxproj` | Visual Studio 2022 project file |
 
 ---
 
-## Known Limitation — IP Spoofing (v1.00)
+## Known Limitation — IP Spoofing (v1.0.6)
 
-PROXCLIP v1.00 trusts the PROXY Protocol header from any connection that presents one. It does not validate that the connection originated from a known proxy server. A caller who can reach port 23 directly can send a crafted `PROXY TCP4 x.x.x.x ...` header and impersonate any IP address.
+PROXCLIP v1.0.6 trusts the PROXY Protocol header from any connection that presents one. It does not validate that the connection originated from a known proxy server. A caller who can reach port 23 directly can send a crafted `PROXY TCP4 x.x.x.x ...` header and impersonate any IP address.
 
-**Required mitigation for v1.00:** Restrict inbound port 23 access on the BBS server to the proxy server's IP using Windows Firewall. This ensures the PROXY header can only arrive from a trusted source.
+**Required mitigation for v1.0.6:** Restrict inbound port 23 access on the BBS server to the proxy server's IP using Windows Firewall. This ensures the PROXY header can only arrive from a trusted source.
 
-Trusted source validation built into the module — checking the raw socket IP against a configured list of trusted proxy addresses before processing any PROXY header — is planned for v1.10.
+Trusted source validation built into the module — checking the raw socket IP against a configured list of trusted proxy addresses before processing any PROXY header — is planned for v1.1.0.
 
 ---
 
-## Planned for v1.10
+## Planned for v1.1.0
 
 - **Trusted source validation**: Configurable list of trusted proxy IPs stored in the MBBS CNF system. PROXY headers from any other source will be ignored regardless of content.
-- **wgserv.cfg installer utility**: A standalone `PROXINST.EXE` that automatically inserts the required `DLL=` and `APP=` lines into `wgserv.cfg` after the GALTNTD block.
 
 ---
 
 ## Potential Future Enhancements
 
 - **PROXY Protocol v2** (binary format): BBSFirewall currently uses v1 (ASCII). If v2 support is added to BBSFirewall, PROXCLIP would need a second parsing path checking for the 12-byte binary signature `\x0D\x0A\x0D\x0A\x00\x0D\x0A\x51\x55\x49\x54\x0A`.
-- **IPv6 (TCP6)**: Currently only `TCP4` headers are processed. `TCP6` headers are detected but passed through. Full IPv6 support would require changes to how `inaddr` is stored in `tcpipinf`.
 
 ---
 
 ## About
 
-PROXCLIP is developed and maintained by Mark Laudenbach at Sysop Network.
+Released under the [MIT License](LICENSE).
 
-Released under the MIT License. Copyright (c) 2026 Sysop Network.
+PROXCLIP is developed and maintained by [Mark Laudenbach](https://github.com/laudenbachm) at [Sysop Network](https://github.com/SysopNetwork).

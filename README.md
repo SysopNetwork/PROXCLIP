@@ -48,30 +48,13 @@ By **[Mark Laudenbach](https://github.com/laudenbachm)** at **[Sysop Network](ht
 
 ## 🚀 Quick Install
 
-1. Copy `PROXCLIP.DLL` and `PROXCLIP.MDF` from the [`DIST/`](DIST/) folder to your BBS installation directory.
-2. Add the following to `wgserv.cfg` **after** the GALTNTD entries:
-   ```
-   DLL=PROXCLIP
-   APP=PROXCLIP Proxy Client IP by Sysop Network
-   ```
-3. Enable PROXY Protocol v1 on your proxy server.
-4. Restart the BBS.
+1. Copy `PROXCLIP.DLL` and `PROXCLIP.MDF` to your BBS installation directory. (Most of the time its C:\BBSV10)
+2. Enable PROXY Protocol v1 on your proxy server.
+3. Restart the BBS.
 
-See [INSTALL.md](INSTALL.md) for the full step-by-step guide, including proxy-specific configuration examples and troubleshooting.
 
 ---
 
-## ⚙️ wgserv.cfg Configuration
-
-PROXCLIP must be listed **after** GALTNTD in `wgserv.cfg`. Locate the GALTNTD block and insert the two lines immediately after it:
-
-```
-DLL=GALTNTD
-APP=GALTNTD Telnet Server
-
-DLL=PROXCLIP
-APP=PROXCLIP Proxy Client IP by Sysop Network
-```
 
 > **Load order is critical.** PROXCLIP hooks a function pointer that GALTNTD sets up at startup. If PROXCLIP loads first, that pointer will not exist yet and the module will disable itself with a fatal message in the Audit Trail.
 
@@ -83,7 +66,7 @@ PROXCLIP trusts the PROXY Protocol header from any connection that presents one.
 
 **Use Windows Firewall on the BBS server** to restrict inbound port 23 access to the proxy server's IP address only. This ensures the PROXY header can only arrive from a trusted source.
 
-> Trusted source validation built into the module is planned for PROXCLIP v1.10.
+> Trusted source validation built into the module is planned for PROXCLIP v1.1.0.
 
 ---
 
@@ -151,7 +134,6 @@ PROXCLIP    chan 04: bad PROXY header (fields=2), passing through
 
 | Document | Description |
 |----------|-------------|
-| [INSTALL.md](INSTALL.md) | Step-by-step installation guide with proxy-specific configuration examples and troubleshooting |
 | [TECHNICAL.md](TECHNICAL.md) | Detailed technical reference — hook mechanism, execution flow, runtime symbol resolution, build configuration |
 
 ---
@@ -167,14 +149,11 @@ PROXCLIP    chan 04: bad PROXY header (fields=2), passing through
 | 1.0.1 | 2026-06-01 | Removed goto statements; attempted non-blocking poll (reverted — not viable in hdlcon context) |
 | 1.00 | 2026-05-27 | Initial release |
 
----
-
-## 🏆 Credits
-
-PROXCLIP is developed and maintained by [Mark Laudenbach](https://github.com/laudenbachm) at [Sysop Network](https://github.com/SysopNetwork).
 
 ---
 
 ## 📄 License
 
-MIT — Copyright (c) 2026 Sysop Network
+Released under the [MIT License](LICENSE).
+
+PROXCLIP is developed and maintained by [Mark Laudenbach](https://github.com/laudenbachm) at [Sysop Network](https://github.com/SysopNetwork).
