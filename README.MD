@@ -136,6 +136,7 @@ PROXCLIP    chan 04: bad PROXY header (fields=2), passing through
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 1.0.7 | 2026-06-11 | Add `__declspec(dllexport)` to internal hook functions — ensures MBBS can resolve them via `GetProcAddress` at runtime regardless of `.DEF` file export alias handling |
 | 1.0.6 | 2026-06-07 | Fix audit trail channel number off-by-one — body now matches the Chan display in the MBBS audit header; add DLL version and copyright resource; update MDF fields |
 | 1.0.5 | 2026-06-01 | Replace sleep-based wait with recv() IAT hook in GALTNTD.DLL — no blocking, timing-independent |
 | 1.0.3 | 2026-06-01 | Fix channel numbers in audit trail — now displayed as two-digit hex (01–ff) to match MBBS convention |
