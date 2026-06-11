@@ -50,7 +50,7 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)..\..\Releases\proxclip\v1.0.6\</OutDir>
+    <OutDir>$(ProjectDir)..\..\Releases\proxclip\v1.0.7\</OutDir>
     <IntDir>$(ProjectDir)obj\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
@@ -60,7 +60,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;GCWINNT;GCMVC;BBSVER=1000;USE_DEF_FILE;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;__BUILDV10MODULE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\MBBS SDK\inc;$(ProjectDir)..\..\MBBS SDK\inc\msg\v10</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\CLAUDE RESOURCES\MBBS 10 SDK\inc;$(ProjectDir)..\..\CLAUDE RESOURCES\MBBS 10 SDK\inc\msg\v10</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StructMemberAlignment>8Bytes</StructMemberAlignment>
       <AdditionalOptions>/J %(AdditionalOptions)</AdditionalOptions>
@@ -69,7 +69,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\MBBS SDK\lib\importlibs;$(ProjectDir)..\..\MBBS SDK\lib\v10</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\CLAUDE RESOURCES\MBBS 10 SDK\lib\importlibs;$(ProjectDir)..\..\CLAUDE RESOURCES\MBBS 10 SDK\lib\v10</AdditionalLibraryDirectories>
       <AdditionalDependencies>wgserver_lib.lib;galgsbl_lib.lib;ws2_32.lib</AdditionalDependencies>
       <ModuleDefinitionFile>$(ProjectDir)PROXCLIP_EXP.DEF</ModuleDefinitionFile>
       <OptimizeReferences>false</OptimizeReferences>
@@ -84,7 +84,7 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;GCWINNT;GCMVC;BBSVER=1000;USE_DEF_FILE;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;__BUILDV10MODULE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\MBBS SDK\inc;$(ProjectDir)..\..\MBBS SDK\inc\msg\v10</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\CLAUDE RESOURCES\MBBS 10 SDK\inc;$(ProjectDir)..\..\CLAUDE RESOURCES\MBBS 10 SDK\inc\msg\v10</AdditionalIncludeDirectories>
       <StructMemberAlignment>8Bytes</StructMemberAlignment>
       <AdditionalOptions>/J %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -94,12 +94,12 @@
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\MBBS SDK\lib\importlibs;$(ProjectDir)..\..\MBBS SDK\lib\v10</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\CLAUDE RESOURCES\MBBS 10 SDK\lib\importlibs;$(ProjectDir)..\..\CLAUDE RESOURCES\MBBS 10 SDK\lib\v10</AdditionalLibraryDirectories>
       <AdditionalDependencies>wgserver_lib.lib;galgsbl_lib.lib;ws2_32.lib</AdditionalDependencies>
       <ModuleDefinitionFile>$(ProjectDir)PROXCLIP_EXP.DEF</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(ProjectDir)PROXCLIP.MDF" "$(OutDir)PROXCLIP.MDF"</Command>
+      <Command>copy /Y "$(ProjectDir)DIST\PROXCLIP.MDF" "$(OutDir)PROXCLIP.MDF"</Command>
       <Message>Copying installable files to release folder</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -113,7 +113,7 @@
     <ResourceCompile Include="PROXCLIP.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PROXCLIP.MDF" />
+    <None Include="DIST\PROXCLIP.MDF" />
     <None Include="PROXCLIP_EXP.DEF" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

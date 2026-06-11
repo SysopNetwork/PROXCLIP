@@ -42,7 +42,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define PROXCLIP_VERSION "v1.0.6"
+#define PROXCLIP_VERSION "v1.0.7"
 
 /*
  * Pending socket table, indexed by usrnum.
@@ -70,11 +70,11 @@ static struct tcpipinf **pp_tcpipinf = NULL;
 /* saved hdlcon pointer -- we chain to this after our processing */
 static VOID (*hcsave)(VOID) = NULL;
 
-static VOID     proxclip_hdlcon(VOID);
-static VOID     proxclip_hup(VOID);
-static VOID     proxclip_fin(VOID);
-static INT      prx_consume_header(SOCKET skt, INT unum);
-static int WINAPI prx_recv_hook(SOCKET s, char *buf, int len, int flags);
+__declspec(dllexport) VOID     proxclip_hdlcon(VOID);
+__declspec(dllexport) VOID     proxclip_hup(VOID);
+__declspec(dllexport) VOID     proxclip_fin(VOID);
+__declspec(dllexport) INT      prx_consume_header(SOCKET skt, INT unum);
+__declspec(dllexport) int WINAPI prx_recv_hook(SOCKET s, char *buf, int len, int flags);
 static recv_fn_t *find_iat_recv(HMODULE hMod);
 static recv_fn_t  patch_iat_recv(HMODULE hMod, recv_fn_t new_fn);
 
@@ -261,7 +261,7 @@ patch_iat_recv(HMODULE hMod, recv_fn_t new_fn)
  * usrnum is valid here: hdlsock() calls curusr(usrnum) before invoking any
  * socket event handler, so it is set to the channel being processed.
  */
-static int WINAPI
+__declspec(dllexport) int WINAPI
 prx_recv_hook(SOCKET s, char *buf, int len, int flags)
 {
     if (!(flags & MSG_PEEK) &&
@@ -284,7 +284,7 @@ prx_recv_hook(SOCKET s, char *buf, int len, int flags)
  * consumes those bytes (via recv) and patches tcpipinf[unum].inaddr with
  * the real caller IP.  If no valid header, socket is left untouched.
  */
-static INT
+__declspec(dllexport) INT
 prx_consume_header(SOCKET skt, INT unum)
 {
     CHAR           hdr[128];    /* 107-byte max + \r\n + NUL fits easily */
@@ -357,7 +357,7 @@ prx_consume_header(SOCKET skt, INT unum)
  * If the recv hook is unavailable (IAT patch failed), falls back to a
  * single non-blocking FIONREAD check as a best-effort measure.
  */
-static VOID
+__declspec(dllexport) VOID
 proxclip_hdlcon(VOID)
 {
     SOCKET skt;
@@ -428,7 +428,7 @@ proxclip_hdlcon(VOID)
  * Clear the pending socket entry when a connection drops.  Prevents a
  * recycled socket handle on a new connection from matching a stale entry.
  */
-static VOID
+__declspec(dllexport) VOID
 proxclip_hup(VOID)
 {
     if (usrnum >= 0 && usrnum < MAXNTERM)
@@ -440,7 +440,7 @@ proxclip_hup(VOID)
  *
  * Restore recv() IAT and hdlcon on shutdown.
  */
-static VOID
+__declspec(dllexport) VOID
 proxclip_fin(VOID)
 {
     if (patched_iat_entry != NULL && real_recv != NULL) {
